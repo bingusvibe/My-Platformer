@@ -1,0 +1,226 @@
+[gd_scene load_steps=10 format=3 uid="uid://bv3nenw2lm4ha"]
+
+[ext_resource type="PackedScene" uid="uid://de36hm78k6jpx" path="res://Scenes/Bodies/character_body_2d.tscn" id="1_mnrxu"]
+[ext_resource type="PackedScene" uid="uid://dg6rdwxu4u5ej" path="res://Scenes/Blocks/floor.tscn" id="2_cikwm"]
+[ext_resource type="PackedScene" uid="uid://qb8rn0ktyq7i" path="res://Scenes/Blocks/Spike.tscn" id="4_2d6l3"]
+[ext_resource type="PackedScene" uid="uid://c5dylwo6tqbj" path="res://Scenes/Blocks/bounce_pad.tscn" id="4_42f7s"]
+[ext_resource type="PackedScene" uid="uid://b5g88rm01cc5l" path="res://Scenes/Blocks/orb.tscn" id="5_fonlt"]
+[ext_resource type="PackedScene" uid="uid://b2x4jnh1beu5h" path="res://Scenes/Bodies/coin.tscn" id="6_o7p82"]
+[ext_resource type="Script" path="res://Scripts/Bodies/coin.gd" id="7_10g7j"]
+[ext_resource type="PackedScene" uid="uid://dcm05marc0f83" path="res://enemy_2.tscn" id="9_20exk"]
+[ext_resource type="PackedScene" uid="uid://dhjw27d2id4bu" path="res://Scenes/Bodies/enemy_collision.tscn" id="9_56rk5"]
+
+[node name="Main" type="Node"]
+
+[node name="Player" parent="." instance=ExtResource("1_mnrxu")]
+position = Vector2(1376, 112)
+collision_layer = 7
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+offset = Vector2(0, -25)
+zoom = Vector2(1.5, 1.5)
+process_callback = 0
+position_smoothing_enabled = true
+metadata/_edit_lock_ = true
+
+[node name="Startpos" type="Marker2D" parent="."]
+
+[node name="blocks" type="Node2D" parent="."]
+
+[node name="spikes" type="Node2D" parent="blocks"]
+
+[node name="Spike2" parent="blocks/spikes" instance=ExtResource("4_2d6l3")]
+position = Vector2(1184, 256)
+
+[node name="Spike3" parent="blocks/spikes" instance=ExtResource("4_2d6l3")]
+position = Vector2(1280, 144)
+
+[node name="Spike5" parent="blocks/spikes" instance=ExtResource("4_2d6l3")]
+position = Vector2(1536, 144)
+
+[node name="Spike" parent="blocks/spikes" instance=ExtResource("4_2d6l3")]
+position = Vector2(864, 256)
+
+[node name="Spike4" parent="blocks/spikes" instance=ExtResource("4_2d6l3")]
+position = Vector2(1280, -48)
+rotation = -3.14159
+
+[node name="floors" type="Node2D" parent="blocks"]
+
+[node name="floor" parent="blocks/floors" instance=ExtResource("2_cikwm")]
+position = Vector2(864, 288)
+scale = Vector2(11, 1)
+
+[node name="floor3" parent="blocks/floors" instance=ExtResource("2_cikwm")]
+position = Vector2(1408, 176)
+scale = Vector2(4.95911, 1)
+
+[node name="floor8" parent="blocks/floors" instance=ExtResource("2_cikwm")]
+position = Vector2(1440, 416)
+scale = Vector2(4.95911, 1)
+
+[node name="floor2" parent="blocks/floors" instance=ExtResource("2_cikwm")]
+position = Vector2(544, -64)
+scale = Vector2(1, 10.08)
+
+[node name="floor4" parent="blocks/floors" instance=ExtResource("2_cikwm")]
+position = Vector2(1280, -80)
+
+[node name="floor5" parent="blocks/floors" instance=ExtResource("2_cikwm")]
+position = Vector2(2064, 80)
+scale = Vector2(3.12, 1)
+
+[node name="floor6" parent="blocks/floors" instance=ExtResource("2_cikwm")]
+position = Vector2(2336, 176)
+
+[node name="floor7" parent="blocks/floors" instance=ExtResource("2_cikwm")]
+position = Vector2(2528, 96)
+
+[node name="bounce pads" type="Node2D" parent="blocks"]
+
+[node name="Bounce_Pad" parent="blocks/bounce pads" instance=ExtResource("4_42f7s")]
+position = Vector2(1120, 240)
+collision_mask = 2
+
+[node name="Bounce_Pad2" parent="blocks/bounce pads" instance=ExtResource("4_42f7s")]
+position = Vector2(2336, 128)
+collision_mask = 2
+
+[node name="Bounce_Pad3" parent="blocks/bounce pads" instance=ExtResource("4_42f7s")]
+position = Vector2(2416, -16)
+collision_mask = 2
+
+[node name="Bounce_Pad4" parent="blocks/bounce pads" instance=ExtResource("4_42f7s")]
+position = Vector2(2224, -96)
+collision_mask = 2
+
+[node name="Bounce_Pad5" parent="blocks/bounce pads" instance=ExtResource("4_42f7s")]
+position = Vector2(2368, -96)
+collision_mask = 2
+
+[node name="Bounce_Pad6" parent="blocks/bounce pads" instance=ExtResource("4_42f7s")]
+position = Vector2(2448, -240)
+collision_mask = 2
+
+[node name="Bounce_Pad7" parent="blocks/bounce pads" instance=ExtResource("4_42f7s")]
+position = Vector2(2272, -304)
+collision_mask = 2
+
+[node name="Bounce_Pad8" parent="blocks/bounce pads" instance=ExtResource("4_42f7s")]
+position = Vector2(2688, -304)
+collision_mask = 2
+
+[node name="Bounce_Pad9" parent="blocks/bounce pads" instance=ExtResource("4_42f7s")]
+position = Vector2(2480, -432)
+collision_mask = 2
+
+[node name="Bounce_Pad10" parent="blocks/bounce pads" instance=ExtResource("4_42f7s")]
+position = Vector2(2288, -464)
+collision_mask = 2
+
+[node name="Coins" type="Node2D" parent="blocks"]
+
+[node name="coin" parent="blocks/Coins" instance=ExtResource("6_o7p82")]
+position = Vector2(720, 208)
+script = ExtResource("7_10g7j")
+
+[node name="coin2" parent="blocks/Coins" instance=ExtResource("6_o7p82")]
+position = Vector2(976, 208)
+script = ExtResource("7_10g7j")
+
+[node name="coin3" parent="blocks/Coins" instance=ExtResource("6_o7p82")]
+position = Vector2(1648, 48)
+script = ExtResource("7_10g7j")
+
+[node name="coin4" parent="blocks/Coins" instance=ExtResource("6_o7p82")]
+position = Vector2(1856, 32)
+script = ExtResource("7_10g7j")
+
+[node name="coin5" parent="blocks/Coins" instance=ExtResource("6_o7p82")]
+position = Vector2(1760, -32)
+script = ExtResource("7_10g7j")
+
+[node name="coin6" parent="blocks/Coins" instance=ExtResource("6_o7p82")]
+position = Vector2(2016, 0)
+script = ExtResource("7_10g7j")
+
+[node name="coin7" parent="blocks/Coins" instance=ExtResource("6_o7p82")]
+position = Vector2(2304, -32)
+script = ExtResource("7_10g7j")
+
+[node name="coin8" parent="blocks/Coins" instance=ExtResource("6_o7p82")]
+position = Vector2(2256, 64)
+script = ExtResource("7_10g7j")
+
+[node name="coin9" parent="blocks/Coins" instance=ExtResource("6_o7p82")]
+position = Vector2(2192, 0)
+script = ExtResource("7_10g7j")
+
+[node name="coin10" parent="blocks/Coins" instance=ExtResource("6_o7p82")]
+position = Vector2(2096, 0)
+script = ExtResource("7_10g7j")
+
+[node name="coin11" parent="blocks/Coins" instance=ExtResource("6_o7p82")]
+position = Vector2(1936, 0)
+script = ExtResource("7_10g7j")
+
+[node name="orbs" type="Node2D" parent="blocks"]
+
+[node name="orb2" parent="blocks/orbs" instance=ExtResource("5_fonlt")]
+position = Vector2(1904, 96)
+
+[node name="orb" parent="blocks/orbs" instance=ExtResource("5_fonlt")]
+position = Vector2(1680, 128)
+
+[node name="Entities" type="Node2D" parent="."]
+
+[node name="Enemy2" parent="Entities" instance=ExtResource("9_20exk")]
+position = Vector2(1424, 368)
+collision_layer = 8
+collision_mask = 4
+
+[node name="EnitiyBlock" type="Node2D" parent="Entities"]
+
+[node name="EnemyCollision" parent="Entities/EnitiyBlock" instance=ExtResource("9_56rk5")]
+position = Vector2(1600, 368)
+collision_layer = 0
+collision_mask = 8
+
+[node name="EnemyCollision2" parent="Entities/EnitiyBlock" instance=ExtResource("9_56rk5")]
+position = Vector2(1264, 368)
+collision_layer = 0
+collision_mask = 8
+
+[connection signal="body_entered" from="blocks/spikes/Spike2" to="Player" method="_on_spike_body_entered"]
+[connection signal="body_entered" from="blocks/spikes/Spike3" to="Player" method="_on_spike_body_entered"]
+[connection signal="body_entered" from="blocks/spikes/Spike5" to="Player" method="_on_spike_body_entered"]
+[connection signal="body_entered" from="blocks/spikes/Spike" to="Player" method="_on_spike_body_entered"]
+[connection signal="body_entered" from="blocks/spikes/Spike4" to="Player" method="_on_spike_body_entered"]
+[connection signal="body_entered" from="blocks/bounce pads/Bounce_Pad" to="Player" method="_on_bounce_pad_body_entered"]
+[connection signal="body_entered" from="blocks/bounce pads/Bounce_Pad2" to="Player" method="_on_bounce_pad_body_entered"]
+[connection signal="body_entered" from="blocks/bounce pads/Bounce_Pad3" to="Player" method="_on_bounce_pad_body_entered"]
+[connection signal="body_entered" from="blocks/bounce pads/Bounce_Pad4" to="Player" method="_on_bounce_pad_body_entered"]
+[connection signal="body_entered" from="blocks/bounce pads/Bounce_Pad5" to="Player" method="_on_bounce_pad_body_entered"]
+[connection signal="body_entered" from="blocks/bounce pads/Bounce_Pad6" to="Player" method="_on_bounce_pad_body_entered"]
+[connection signal="body_entered" from="blocks/bounce pads/Bounce_Pad7" to="Player" method="_on_bounce_pad_body_entered"]
+[connection signal="body_entered" from="blocks/bounce pads/Bounce_Pad8" to="Player" method="_on_bounce_pad_body_entered"]
+[connection signal="body_entered" from="blocks/bounce pads/Bounce_Pad9" to="Player" method="_on_bounce_pad_body_entered"]
+[connection signal="body_entered" from="blocks/bounce pads/Bounce_Pad10" to="Player" method="_on_bounce_pad_body_entered"]
+[connection signal="body_entered" from="blocks/Coins/coin" to="blocks/Coins/coin" method="_on_body_entered"]
+[connection signal="body_entered" from="blocks/Coins/coin2" to="blocks/Coins/coin2" method="_on_body_entered"]
+[connection signal="body_entered" from="blocks/Coins/coin3" to="blocks/Coins/coin3" method="_on_body_entered"]
+[connection signal="body_entered" from="blocks/Coins/coin4" to="blocks/Coins/coin4" method="_on_body_entered"]
+[connection signal="body_entered" from="blocks/Coins/coin5" to="blocks/Coins/coin5" method="_on_body_entered"]
+[connection signal="body_entered" from="blocks/Coins/coin6" to="blocks/Coins/coin6" method="_on_body_entered"]
+[connection signal="body_entered" from="blocks/Coins/coin7" to="blocks/Coins/coin7" method="_on_body_entered"]
+[connection signal="body_entered" from="blocks/Coins/coin8" to="blocks/Coins/coin8" method="_on_body_entered"]
+[connection signal="body_entered" from="blocks/Coins/coin9" to="blocks/Coins/coin9" method="_on_body_entered"]
+[connection signal="body_entered" from="blocks/Coins/coin10" to="blocks/Coins/coin10" method="_on_body_entered"]
+[connection signal="body_entered" from="blocks/Coins/coin11" to="blocks/Coins/coin11" method="_on_body_entered"]
+[connection signal="body_entered" from="blocks/orbs/orb2" to="Player" method="_on_orb_body_entered"]
+[connection signal="body_exited" from="blocks/orbs/orb2" to="Player" method="_on_orb_body_exited"]
+[connection signal="body_entered" from="blocks/orbs/orb" to="Player" method="_on_orb_body_entered"]
+[connection signal="body_exited" from="blocks/orbs/orb" to="Player" method="_on_orb_body_exited"]
+[connection signal="body_entered" from="Entities/Enemy2" to="Player" method="_on_enemy_2_body_entered"]
+[connection signal="area_shape_entered" from="Entities/EnitiyBlock/EnemyCollision" to="Entities/Enemy2" method="_on_enemy_collision_area_shape_entered"]
+[connection signal="area_shape_entered" from="Entities/EnitiyBlock/EnemyCollision2" to="Entities/Enemy2" method="_on_enemy_collision_area_shape_entered"]

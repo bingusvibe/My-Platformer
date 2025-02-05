@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://de36hm78k6jpx"]
+
+[ext_resource type="Script" path="res://Scripts/Bodies/character_body_2d.gd" id="1_n1qr6"]
+[ext_resource type="Texture2D" uid="uid://bfbeg4q80rygp" path="res://Scenes/Bodies/image-removebg-preview.png" id="2_dd04v"]
+[ext_resource type="PackedScene" uid="uid://c1c4dqxbko2ak" path="res://sword.tscn" id="3_c1meu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w7jly"]
+size = Vector2(32, 32)
+
+[node name="Player" type="CharacterBody2D"]
+position = Vector2(96, 32)
+script = ExtResource("1_n1qr6")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+scale = Vector2(1.6, 1.6)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_w7jly")
+metadata/_edit_lock_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-1.43051e-06, -4.76837e-07)
+scale = Vector2(0.222222, 0.149623)
+texture = ExtResource("2_dd04v")
+
+[node name="weapon" type="Node2D" parent="."]
+
+[node name="Sword" parent="weapon" instance=ExtResource("3_c1meu")]
+
+[node name="Cooldown" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="timeout" from="Cooldown" to="." method="_on_cooldown_timeout"]

@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://dg6rdwxu4u5ej"]
+
+[ext_resource type="Script" path="res://Scripts/Blocks/floor.gd" id="1_v0w05"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_8058t"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1k24v"]
+size = Vector2(64, 64)
+
+[sub_resource type="QuadMesh" id="QuadMesh_cxrf7"]
+
+[node name="floor" type="StaticBody2D"]
+position = Vector2(32, 32)
+physics_material_override = SubResource("PhysicsMaterial_8058t")
+script = ExtResource("1_v0w05")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_1k24v")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+modulate = Color(0.196078, 0.196078, 0.196078, 1)
+position = Vector2(0, -7.15256e-07)
+scale = Vector2(64, 64)
+mesh = SubResource("QuadMesh_cxrf7")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+visible = false
+position = Vector2(1.43051e-06, 1.43051e-06)
+scale = Vector2(3.2, 3.2)
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
