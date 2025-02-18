@@ -3,16 +3,18 @@
 [ext_resource type="Texture2D" uid="uid://r21v7ugl1csa" path="res://Scenes/Bodies/image-removebg-preview(1).png" id="1_uywki"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eg7is"]
-size = Vector2(30, 16)
+size = Vector2(47, 16)
 
-[node name="Sword" type="Area2D" groups=["weapons"]]
-position = Vector2(-16, 0)
+[node name="Sword" type="Area2D" groups=["hit"]]
+collision_layer = 17
+collision_mask = 17
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-24.5, 0)
 shape = SubResource("RectangleShape2D_eg7is")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(2.8775, -0.243168)
+position = Vector2(-23.386, 2.67373e-05)
 rotation = -1.5708
-scale = Vector2(0.159963, 0.0917358)
+scale = Vector2(0.159963, 0.127076)
 texture = ExtResource("1_uywki")

@@ -12,12 +12,8 @@ config_version=5
 
 config/name="Platformer1"
 run/main_scene="res://player.tscn"
-config/features=PackedStringArray("4.3", "Forward Plus")
+config/features=PackedStringArray("4.3", "C#", "Forward Plus")
 config/icon="res://icon.svg"
-
-[autoload]
-
-Fullscreen="*res://addons/easy_fullscreen/autoload.gd"
 
 [display]
 
@@ -40,7 +36,10 @@ enabled=PackedStringArray()
 
 [global_group]
 
-weapons=""
+hit=""
+player=""
+enemies=""
+Ewall=""
 
 [input]
 

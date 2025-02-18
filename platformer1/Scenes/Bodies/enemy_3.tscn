@@ -1,0 +1,41 @@
+[gd_scene load_steps=4 format=3 uid="uid://c651wyndy1obq"]
+
+[ext_resource type="Script" path="res://enemy_2.gd" id="1_o3f5m"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_df3g2"]
+size = Vector2(32, 32)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6pktg"]
+radius = 320.1
+
+[node name="Enemy2" type="Area2D" groups=["enemies"]]
+collision_layer = 17
+collision_mask = 17
+script = ExtResource("1_o3f5m")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_df3g2")
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+color = Color(0, 0, 1, 1)
+polygon = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+
+[node name="Radius" type="Area2D" parent="."]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Radius"]
+shape = SubResource("CircleShape2D_6pktg")
+
+[node name="PlayerPosition" type="RayCast2D" parent="."]
+target_position = Vector2(0, 0)
+collision_mask = 32
+
+[node name="FloorCheck" type="RayCast2D" parent="."]
+target_position = Vector2(0, 32)
+
+[node name="FloorTimer" type="Timer" parent="."]
+
+[connection signal="area_entered" from="." to="." method="Hit"]
+[connection signal="body_entered" from="Radius" to="." method="_on_radius_body_entered"]
+[connection signal="body_exited" from="Radius" to="." method="_on_radius_body_exited"]
+[connection signal="timeout" from="FloorTimer" to="." method="_on_floor_timer_timeout"]

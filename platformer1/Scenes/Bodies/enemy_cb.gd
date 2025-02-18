@@ -1,4 +1,4 @@
-extends Area2D
+extends CharacterBody2D
 
 @export var SPEED = 150
 @export var LIFE = 3

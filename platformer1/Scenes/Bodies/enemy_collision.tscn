@@ -4,7 +4,11 @@
 size = Vector2(16, 48)
 
 [node name="EnemyCollision" type="Area2D"]
+collision_layer = 17
+collision_mask = 17
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(8, -8)
 shape = SubResource("RectangleShape2D_twro1")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

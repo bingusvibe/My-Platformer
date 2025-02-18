@@ -1,0 +1,37 @@
+[gd_scene load_steps=5 format=3 uid="uid://cqamf5ff5384"]
+
+[ext_resource type="Script" path="res://Scenes/Bodies/enemy_cb.gd" id="1_x3pjs"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v7u3s"]
+size = Vector2(32, 32)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3fgye"]
+radius = 320.1
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r11x6"]
+size = Vector2(32, 32)
+
+[node name="EnemyCB" type="CharacterBody2D" groups=["enemies"]]
+script = ExtResource("1_x3pjs")
+
+[node name="Hitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("RectangleShape2D_v7u3s")
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+color = Color(0, 0, 1, 1)
+polygon = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+
+[node name="Radius" type="Area2D" parent="."]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Radius"]
+shape = SubResource("CircleShape2D_3fgye")
+
+[node name="PlayerPosition" type="RayCast2D" parent="."]
+target_position = Vector2(0, 0)
+collision_mask = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_r11x6")
